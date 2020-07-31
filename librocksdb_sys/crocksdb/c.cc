@@ -34,6 +34,7 @@
 #include "rocksdb/rate_limiter.h"
 #include "rocksdb/slice_transform.h"
 #include "rocksdb/sst_dump_tool.h"
+#include "rocksdb/sst_file_manager.h"
 #include "rocksdb/sst_file_reader.h"
 #include "rocksdb/statistics.h"
 #include "rocksdb/status.h"
@@ -2525,6 +2526,14 @@ void crocksdb_options_set_wal_dir(crocksdb_options_t* opt, const char* v) {
 void crocksdb_options_set_wal_ttl_seconds(crocksdb_options_t* opt,
                                           uint64_t ttl) {
   opt->rep.WAL_ttl_seconds = ttl;
+}
+
+void crocksdb_options_set_delete_rate_bytes_per_second(crocksdb_options_t* opt,
+                                                       uint64_t rate) {
+  auto manager = std::shared_ptr<rocksdb::SstFileManager>(
+      rocksdb::NewSstFileManager(Env::Default()));
+  manager->SetDeleteRateBytesPerSecond(rate);
+  opt->rep.sst_file_manager = manager;
 }
 
 void crocksdb_options_set_wal_size_limit_mb(crocksdb_options_t* opt,

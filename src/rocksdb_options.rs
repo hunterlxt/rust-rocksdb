@@ -932,6 +932,15 @@ impl DBOptions {
         }
     }
 
+    pub fn set_delete_rate_bytes_per_second(&mut self, rate: u64) {
+        unsafe {
+            crocksdb_ffi::crocksdb_options_set_delete_rate_bytes_per_second(
+                self.inner,
+                rate as u64,
+            );
+        }
+    }
+
     pub fn set_wal_size_limit_mb(&mut self, limit: u64) {
         unsafe {
             crocksdb_ffi::crocksdb_options_set_wal_size_limit_mb(self.inner, limit as u64);

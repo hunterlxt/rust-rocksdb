@@ -705,6 +705,7 @@ extern "C" {
     pub fn crocksdb_options_set_db_log_dir(options: *mut Options, path: *const c_char);
     pub fn crocksdb_options_set_wal_dir(options: *mut Options, path: *const c_char);
     pub fn crocksdb_options_set_wal_ttl_seconds(options: *mut Options, ttl: u64);
+    pub fn crocksdb_options_set_delete_rate_bytes_per_second(options: *mut Options, rate: u64);
     pub fn crocksdb_options_set_wal_size_limit_mb(options: *mut Options, limit: u64);
     pub fn crocksdb_options_set_use_direct_reads(options: *mut Options, v: bool);
     pub fn crocksdb_options_set_use_direct_io_for_flush_and_compaction(

@@ -2270,6 +2270,9 @@ extern "C" {
     pub fn crocksdb_options_set_wal_ttl_seconds(arg1: *mut crocksdb_options_t, arg2: u64);
 }
 extern "C" {
+    pub fn crocksdb_options_set_delete_rate_bytes_per_second(arg1: *mut crocksdb_options_t, arg2: u64);
+}
+extern "C" {
     pub fn crocksdb_options_set_wal_size_limit_mb(arg1: *mut crocksdb_options_t, arg2: u64);
 }
 extern "C" {
